@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "forceConsistentCasingInFileNames": true,
+      "module": "CommonJS",
+      "target": "es6",
+      "lib": ["es5", "es6", "dom", "dom.iterable"],
+      "types": ["reflect-metadata", "node"],
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "esModuleInterop": true
+    }
+  }
+  

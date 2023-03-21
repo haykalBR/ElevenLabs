@@ -1,0 +1,29 @@
+includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-doctrine/rules.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-symfony/rules.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-phpunit/rules.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+
+parameters:
+    ignoreErrors:
+        - '/Generator expects value type Symfony\\Component\\HttpKernel\\Bundle\\BundleInterface\, object given\./'
+    checkGenericClassInNonGenericObjectType: false
+    treatPhpDocTypesAsCertain: false
+
+    symfony:
+      
+        console_application_loader: build/console.php
+    scanDirectories:
+        - var/cache/dev/Symfony/Config
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
+    level: 8
+    excludePaths:
+        - App/Shared/Infrastructure/Kernel.php      
+    paths:
+        - src
+    

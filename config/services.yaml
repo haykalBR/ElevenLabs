@@ -10,15 +10,59 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-
+    _instanceof:
+        App\Shared\Application\Command\CommandHandlerInterface:
+          public: true
+          tags:
+            - { name: messenger.message_handler, bus: messenger.bus.command }
+        App\Shared\Application\Query\QueryHandlerInterface:
+          public: true
+          tags:
+            - { name: messenger.message_handler, bus: messenger.bus.query }    
+        App\Shared\Infrastructure\Bus\AsyncEvent\AsyncEventHandlerInterface:
+          public: true
+          tags:
+            - { name: messenger.message_handler, bus: messenger.bus.event.async }                  
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
+
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\:
+        resource: '../src/App/*'
+        exclude: '../src/App/**/{Migrations,EventSubscriber}'
+    UI\:
+        resource: '../src/UI/*'
+        exclude: '../src/UI/**/{EventSubscriber}'        
+    App\Shared\Infrastructure\Bus\Command\MessengerCommandBus:
+        arguments:
+          - '@messenger.bus.command'
+    App\Shared\Infrastructure\Bus\Query\MessengerQueryBus:
+        arguments:
+          - '@messenger.bus.query'
+    App\Shared\Infrastructure\Bus\AsyncEvent\MessengerAsyncEventBus:
+        arguments:
+          - '@messenger.bus.event.async'
+    # Event Store
+    Broadway\EventStore\Dbal\DBALEventStore:
+        public: true
+        arguments:
+          - '@doctrine.dbal.default_connection'
+          - '@broadway.serializer.payload'
+          - '@broadway.serializer.metadata'
+          - 'events'
+          - true
+          - '@broadway.uuid.converter'       
+
+    broadway.event_store.dbal:
+        class: Broadway\EventStore\Dbal\DBALEventStore
+        arguments:
+            - "@doctrine.dbal.default_connection"
+            - "@broadway.serializer.payload"
+            - "@broadway.serializer.metadata"
+            - "events"
+            - false
+            - "@broadway.uuid.converter"           
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+        arguments: [ '@snc_redis.session' ]

@@ -1,0 +1,8 @@
+/var/www/src/App/Shared/Infrastructure/Kernel.php,c64dde60e7d1a3f6742961868f3cc03a,0,4
+/var/www/src/App/Shared/Infrastructure/Model/ResourceInterface.php,084927c4f273850247c98c0a73eef337,0,2
+/var/www/src/App/Auth/Domain/UserRepository.php,4ace72baba6a3409965e77974ab2deab,0,2
+/var/www/src/App/Shared/Infrastructure/Model/ResourceTrait.php,73bc8c96914627801fbf496ee35189d4,0,3
+/var/www/src/App/Auth/Domain/User.php,4e74d520aa2404f92dc367a0afda55b6,0,2
+/var/www/src/App/Shared/Application/Command/CommandInterface.php,7b303a791eb9d565c4d9ed1b3666c99d,0,1
+/var/www/src/App/Shared/Application/Command/CommandHandlerInterface.php,af9ebe27e2c8f633ddb13de38b748093,0,1
+/var/www/src/App/Shared/Application/Command/CommandBusInterface.php,61e68f0533a180c78598b87dc3f85588,0,1

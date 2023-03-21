@@ -1,4 +1,41 @@
 {
+    "api-platform/core": {
+        "version": "3.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "0330386d716d3eecc52ee5ac66976e733eb8f961"
+        },
+        "files": [
+            "config/routes/api_platform.yaml",
+            "src/ApiResource/.gitignore"
+        ]
+    },
+    "broadway/broadway-bundle": {
+        "version": "0.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.4",
+            "ref": "0601c67ff07896a752e5a72381a22254ff754ea1"
+        },
+        "files": [
+            "config/packages/broadway.yaml"
+        ]
+    },
+    "broadway/event-store-dbal": {
+        "version": "0.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.2",
+            "ref": "a8e44b60058a2798f65be93037aa1562f4de60eb"
+        },
+        "files": [
+            "config/packages/broadway_event_store_dbal.yaml"
+        ]
+    },
     "doctrine/annotations": {
         "version": "2.0",
         "recipe": {
@@ -35,6 +72,46 @@
             "migrations/.gitignore"
         ]
     },
+    "friendsofphp/php-cs-fixer": {
+        "version": "3.15",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
+        },
+        "files": [
+            ".php-cs-fixer.dist.php"
+        ]
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v6.1.1"
+    },
+    "nelmio/api-doc-bundle": {
+        "version": "4.11",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "c8e0c38e1a280ab9e37587a8fa32b251d5bc1c94"
+        },
+        "files": [
+            "config/packages/nelmio_api_doc.yaml",
+            "config/routes/nelmio_api_doc.yaml"
+        ]
+    },
+    "nelmio/cors-bundle": {
+        "version": "2.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.5",
+            "ref": "6bea22e6c564fba3a1391615cada1437d0bde39c"
+        },
+        "files": [
+            "config/packages/nelmio_cors.yaml"
+        ]
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
@@ -60,6 +137,27 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "snc/redis-bundle": {
+        "version": "4.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "2.0",
+            "ref": "36b3d9ab65be62de4e085a25e6ca899efa96b1f3"
+        },
+        "files": [
+            "config/packages/snc_redis.yaml"
+        ]
+    },
+    "squizlabs/php_codesniffer": {
+        "version": "3.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "3.6",
+            "ref": "1019e5c08d4821cb9b77f4891f8e9c31ff20ac6f"
+        }
     },
     "symfony/console": {
         "version": "6.2",
@@ -274,6 +372,25 @@
         },
         "files": [
             "config/packages/messenger.yaml"
+        ]
+    },
+    "symfony/webpack-encore-bundle": {
+        "version": "1.16",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.10",
+            "ref": "f8fc53f1942f76679e9ee3c25fd44865355707b5"
+        },
+        "files": [
+            "assets/app.js",
+            "assets/bootstrap.js",
+            "assets/controllers.json",
+            "assets/controllers/hello_controller.js",
+            "assets/styles/app.css",
+            "config/packages/webpack_encore.yaml",
+            "package.json",
+            "webpack.config.js"
         ]
     },
     "twig/extra-bundle": {

@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "@babel/core": "^7.21.3",
+    "axios": "^1.3.4",
+    "bootstrap": "^5.2.3",
+    "dotenv": "^16.0.3",
+    "reflect-metadata": "^0.1.13"
+    
+  },
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@popperjs/core": "^2.11.6",
+    "@symfony/webpack-encore": "^4.2.0",
+    "babel-loader": "^9.1.2",
+    "jquery": "^3.6.4",
+    "sass": "^1.59.3",
+    "sass-loader": "^13.0.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.2",
+    "webpack": "^5.76.2",
+    "webpack-cli": "^5.0.1",
+    "webpack-notifier": "^1.15.0",
+    "core-js": "^3.0.0",
+    "regenerator-runtime": "^0.13.2"
+  }
+}

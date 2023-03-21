@@ -1,21 +1,71 @@
-version: '3'
-
+version: "3.8"
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-15}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
-    volumes:
-      - database_data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
-
+    db:
+        image: mariadb:10.9.4
+        platform: linux/x86_64
+        restart: always
+        volumes:
+            - "db:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        ports:
+            - 3306:3306
+        networks:
+            - app
+    php:
+        build:
+          context: ./tools/docker/php
+          args:
+              TIMEZONE: ${TIMEZONE}
+        platform: linux/x86_64
+        depends_on:
+        - db
+        environment:
+        - APP_ENV=${APP_ENV}
+        - APP_SECRET=${APP_SECRET}
+        - DATABASE_URL=${DATABASE_URL}
+        volumes:
+        - ./:/var/www
+        - ./tools/docker/php/php.ini:/usr/local/etc/php/php.ini:ro
+        networks:
+        - app
+    nginx:
+        build:
+            context: ./tools/docker/nginx
+        volumes:
+            - ./:/var/www
+        ports:
+            - 80:80
+        networks:
+            - app
+    rmq:
+      image: rabbitmq:3-management
+      ports:
+        - "5672:5672"
+        - "15672:15672"      
+      environment:
+        RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+        RABBITMQ_DEFAULT_USER: "guest"
+        RABBITMQ_DEFAULT_PASS: "guest"
+        RABBITMQ_DEFAULT_VHOST: "/"
+      networks:
+        - app        
+    redis:
+        image: redis:6.2.6
+        ports:
+        - "6379:6379"
+        volumes:
+        - ./docker/data/redis/data:/var/lib/redis
+        - ./docker/data/redis/config/redis.conf:/usr/local/etc/redis/redis.conf
+        environment:
+        - REDIS_REPLICATION_MODE=master
+        networks:
+            - app  
 volumes:
-###> doctrine/doctrine-bundle ###
-  database_data:
-###< doctrine/doctrine-bundle ###
+    db:
+networks:
+    app:
+

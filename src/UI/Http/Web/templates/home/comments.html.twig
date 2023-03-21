@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+  {% block body %}
+  Ajouter commentaire:
+   <div class="form-group">
+     <label for="exampleFormControlTextarea1">Example textarea</label>
+     <textarea id="content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+            <div id="captchaBackground">
+            <canvas id="captcha">captcha text</canvas>
+            <input id="textBox" type="text" name="text">
+            <span id="output"></span>
+        </div>
+  <button  id="add_comment" type="submit" class="btn btn-primary mb-2">Ajouter</button>
+  <div class="row mt-4" id="comments">
+  </div>
+  {% endblock %}
