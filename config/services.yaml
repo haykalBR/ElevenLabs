@@ -11,15 +11,15 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
     _instanceof:
-        App\Shared\Application\Command\CommandHandlerInterface:
+        App\Application\Command\CommandHandlerInterface:
           public: true
           tags:
             - { name: messenger.message_handler, bus: messenger.bus.command }
-        App\Shared\Application\Query\QueryHandlerInterface:
+        App\Application\Query\QueryHandlerInterface:
           public: true
           tags:
             - { name: messenger.message_handler, bus: messenger.bus.query }    
-        App\Shared\Infrastructure\Bus\AsyncEvent\AsyncEventHandlerInterface:
+        App\Infrastructure\Bus\AsyncEvent\AsyncEventHandlerInterface:
           public: true
           tags:
             - { name: messenger.message_handler, bus: messenger.bus.event.async }                  
@@ -32,16 +32,16 @@ services:
     App\:
         resource: '../src/App/*'
         exclude: '../src/App/**/{Migrations,EventSubscriber}'
-    UI\:
-        resource: '../src/UI/*'
-        exclude: '../src/UI/**/{EventSubscriber}'        
-    App\Shared\Infrastructure\Bus\Command\MessengerCommandBus:
+    IO\:
+        resource: '../src/IO/*'
+        exclude: '../src/IO/**/{EventSubscriber}'
+    App\Infrastructure\Bus\Command\MessengerCommandBus:
         arguments:
           - '@messenger.bus.command'
-    App\Shared\Infrastructure\Bus\Query\MessengerQueryBus:
+    App\Infrastructure\Bus\Query\MessengerQueryBus:
         arguments:
           - '@messenger.bus.query'
-    App\Shared\Infrastructure\Bus\AsyncEvent\MessengerAsyncEventBus:
+    App\Infrastructure\Bus\AsyncEvent\MessengerAsyncEventBus:
         arguments:
           - '@messenger.bus.event.async'
     # Event Store

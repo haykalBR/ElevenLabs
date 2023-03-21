@@ -6,7 +6,7 @@
 - [x] Symfony Messenger
 - [x] Async Event subscribers
 - [x] Rest API
-- [x] Web UI (A Terrible UX/UI)
+- [x] Web IO Terrible UX/UI)
 - [x] Swagger API Doc
 
 ## Stack

@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Auth\Domain;
 
-use App\Shared\Infrastructure\Model\ResourceInterface;
-use App\Shared\Infrastructure\Model\ResourceTrait;
+use App\Auth\Infrastructure\UserRepository;
+use App\Infrastructure\Model\ResourceInterface;
+use App\Infrastructure\Model\ResourceTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 #[

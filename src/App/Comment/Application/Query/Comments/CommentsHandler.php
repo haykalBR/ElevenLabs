@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Comment\Application\Query\Comments;
 
-use App\Comment\Domain\CommentRepository;
-use App\Shared\Application\Query\QueryHandlerInterface;
-use App\Shared\Application\Query\Collection;
+use App\Application\Query\Collection;
+use App\Application\Query\QueryHandlerInterface;
+use App\Comment\Infrastructure\CommentRepository;
 use Knp\Component\Pager\PaginatorInterface;
 
 class CommentsHandler implements QueryHandlerInterface

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Comment\Domain;
 
-use App\Shared\Infrastructure\Model\ResourceInterface;
-use App\Shared\Infrastructure\Model\ResourceTrait;
+use App\Comment\Domain\ValueObject\Content;
+use App\Comment\Infrastructure\CommentRepository;
+use App\Infrastructure\Model\ResourceInterface;
+use App\Infrastructure\Model\ResourceTrait;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,8 +19,8 @@ class Comment implements ResourceInterface
 {
     use ResourceTrait;
 
-    #[ORM\Column(type: Types::TEXT)]
-    public string $content;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    public Content $content;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     public \DateTime $publishedAt;
@@ -27,21 +31,22 @@ class Comment implements ResourceInterface
     }
     public function getContent(): string
     {
-        return $this->content;
+        return $this->content->toString();
     }
 
-    public function setContent(string $content): void
-    {
-        $this->content = $content;
-    }
+
 
     public function getPublishedAt(): \DateTime
     {
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTime $publishedAt): void
-    {
-        $this->publishedAt = $publishedAt;
+
+    public function createComment(
+        Content $content
+    ): Comment {
+        $this->publishedAt = new \DateTime();
+        $this->content = $content;
+        return $this;
     }
 }

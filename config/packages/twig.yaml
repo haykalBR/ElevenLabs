@@ -1,4 +1,4 @@
 twig:
-    paths: ['%kernel.project_dir%/src/UI/Http/Web/templates']
+    paths: ['%kernel.project_dir%/src/IO/templates']
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'

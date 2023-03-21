@@ -1,5 +1,6 @@
-<?php 
-use App\Shared\Infrastructure\Kernel;
+<?php
+
+use App\Infrastructure\Kernel;
 use Symfony\Component\Dotenv\Dotenv;
 
 require __DIR__ . '/../vendor/autoload.php';
